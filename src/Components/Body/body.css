@@ -1,12 +1,12 @@
 /* ==============================Header=============================================== */
-.header-container form {
+.header-container .form {
   display: flex;
   flex-direction: column;
   gap: 15px;
   width: 100%;
 }
 
-.header-container form input {
+.header-container .form input {
   border-radius: 5px;
   padding: 10px 11px;
   border: 1px solid #d5d4d8;
@@ -42,7 +42,11 @@
   font-weight: 700;
   line-height: normal;
   letter-spacing: -1.6px;
+
+  cursor: pointer;
 }
+
+
 
 /* =========================================Meme=========================================== */
 
@@ -52,7 +56,7 @@
   flex-shrink: 0;
   border-radius: 2px;
   background-position: 50%;
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
