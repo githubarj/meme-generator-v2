@@ -8,17 +8,26 @@ import { useState } from 'react'
 
 function App() {
 
-    const [meme, setMemeImage] = useState({
+    const [meme, setMeme] = useState({
       topText: "",
       bottomText: "",
       url: "http://i.imgflip.com/1bij.jpg",
     });
+
+    function setMemeText(e) {
+      const { name, value } = e.target;
+      setMeme((prev) => {
+        return { ...prev, [name]: value };
+      });
+      console.log("hi")
+    }
+
     const [allMemeImages, setAllMemeImages] = useState(memesData);
 
     function getMemeImage() {
       const memesArray = memesData.data.memes;
       const randomNumber = Math.floor(Math.random() * memesArray.length);
-      setMemeImage((prev) => {
+      setMeme((prev) => {
         return {
           ...prev,
           url: memesArray[randomNumber].url,
@@ -31,8 +40,12 @@ function App() {
   return (
     <div className="app-container">
       <Navbar />
-      <Header buttonClick={getMemeImage} />
-      <Meme meme={meme.url} />
+      <Header
+        buttonClick={getMemeImage}
+        handleChange={setMemeText}
+        meme={meme}
+      />
+      <Meme meme={meme} />
     </div>
   );
 }
