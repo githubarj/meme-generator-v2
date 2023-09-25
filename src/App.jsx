@@ -3,10 +3,18 @@ import './App.css'
 import Header from './Components/Body/Header'
 import Meme from './Components/Body/Meme'
 import Navbar from './Components/Navbar/Navbar'
-import memesData from './Data/memesData'
-import { useState } from 'react'  
+import { useEffect, useState } from 'react'  
 
 function App() {
+
+    const [allMemes, setAllMemes] = useState([]);
+
+    useEffect(() => {
+      fetch("https://api.imgflip.com/get_memes")
+      .then(res =>res.json() )
+      .then(data => setAllMemes(data.data.memes))
+    },[])
+
 
     const [meme, setMeme] = useState({
       topText: "",
@@ -22,10 +30,9 @@ function App() {
       console.log("hi")
     }
 
-    const [allMemeImages, setAllMemeImages] = useState(memesData);
 
     function getMemeImage() {
-      const memesArray = memesData.data.memes;
+      const memesArray = allMemes;
       const randomNumber = Math.floor(Math.random() * memesArray.length);
       setMeme((prev) => {
         return {
